@@ -63,23 +63,90 @@
   <!-- Architecture Section -->
   <section id="architecture" class="py-5">
     <div class="container">
-      <h2 class="text-center mb-4">Final State Architecture</h2>
+      <h2>Final State Architecture</h2>
+      <p>
+        The final state architecture for the Toronto Data Platform is designed to empower data-driven decision-making, 
+        enable seamless data sharing across divisions, and support advanced analytics with scalability and reliability. 
+        The platform integrates AWS services to ensure performance and adaptability.
+      </p>
+      <h3>Key Components</h3>
+      <ul>
+        <li>
+          <strong>Amazon S3:</strong> Serves as the central data lake, storing raw, processed, and curated datasets.
+        </li>
+        <li>
+          <strong>AWS Glue:</strong> Facilitates ETL processes, data transformation, and data cataloging.
+        </li>
+        <li>
+          <strong>Amazon Redshift:</strong> A fully managed data warehouse for analytics and reporting.
+        </li>
+        <li>
+          <strong>Amazon Kinesis:</strong> Real-time data streaming for ingesting and analyzing live data.
+        </li>
+        <li>
+          <strong>Amazon SageMaker:</strong> Supports machine learning model development, training, and deployment.
+        </li>
+        <li>
+          <strong>AWS Lambda:</strong> Event-driven computing for serverless data processing.
+        </li>
+        <li>
+          <strong>IAM:</strong> Ensures secure access control and governance for data and resources.
+        </li>
+      </ul>
       <div class="text-center">
         <img src="assets/architecture-diagram.png" alt="AWS Architecture Diagram" class="img-fluid rounded shadow">
       </div>
-      <p class="mt-4 text-center">Click on components to learn more about the architecture.</p>
-      <div id="tooltip" class="tooltip-custom"></div>
+      <p>
+        Click on the components in the diagram to learn more about their roles and functions.
+      </p>
     </div>
   </section>
+  
 
   <!-- Roadmap Section -->
-  <section id="roadmap" class="bg-light py-5">
+  <section id="roadmap" class="py-5 bg-light">
     <div class="container">
       <h2 class="text-center mb-4">Project Roadmap</h2>
-      <div id="timeline" class="border p-3 rounded bg-white shadow-sm"></div>
+      <p class="text-center">
+        This timeline represents the progression from planning to optimization, highlighting key milestones and deliverables.
+      </p>
+      <canvas id="roadmapChart" width="800" height="400"></canvas>
     </div>
   </section>
 
+  <section id="resource-plan" class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">Resource Plan</h2>
+      <p class="text-center">
+        The resource plan outlines the team, budget, and infrastructure needed to implement and sustain the Toronto Data Platform.
+      </p>
+      <h3>Team Composition</h3>
+      <ul>
+        <li><strong>Data Engineers:</strong> Develop and maintain ETL/ELT pipelines, ensure data integrity, and optimize processing.</li>
+        <li><strong>Cloud Engineers:</strong> Manage cloud infrastructure, implement Infrastructure as Code (IaC) using Terraform, and ensure scalability.</li>
+        <li><strong>Data Analysts:</strong> Analyze and visualize data, create dashboards, and support data-driven decision-making.</li>
+        <li><strong>Project Manager:</strong> Coordinate timelines, manage stakeholder communications, and ensure milestones are met.</li>
+        <li><strong>ML Engineers:</strong> Develop, train, and deploy machine learning models to enhance platform capabilities.</li>
+        <li><strong>Data Governance Specialist:</strong> Define and enforce data governance policies, ensuring compliance and quality.</li>
+      </ul>
+      <h3>Budget and Infrastructure</h3>
+      <ul>
+        <li><strong>Personnel:</strong> $2.5M/year for salaries of 15 team members, including engineers, analysts, and specialists.</li>
+        <li><strong>Cloud Infrastructure:</strong> $500K/year for AWS services such as S3, Redshift, Glue, Kinesis, and SageMaker.</li>
+        <li><strong>Training and Development:</strong> $100K/year for workshops, certifications, and team upskilling.</li>
+        <li><strong>Tools and Licenses:</strong> $150K/year for third-party tools, software licenses, and security solutions.</li>
+      </ul>
+      <h3>Resource Allocation Strategy</h3>
+      <p>Resource allocation is divided into phases to ensure a smooth rollout and optimal utilization:</p>
+      <ul>
+        <li><strong>Phase 1 (Months 1-6):</strong> Focus on hiring core team members, finalizing architecture, and initial infrastructure setup.</li>
+        <li><strong>Phase 2 (Months 7-12):</strong> Allocate resources for MVP development, testing, and addressing initial feedback.</li>
+        <li><strong>Phase 3 (Months 13-24):</strong> Scale the platform citywide, optimize pipelines, and integrate advanced analytics features.</li>
+        <li><strong>Phase 4 (Months 25-36):</strong> Focus on AI/ML adoption, performance monitoring, and staff training.</li>
+      </ul>
+    </div>
+  </section>  
+  
   <!-- Success Metrics Section -->
   <section id="metrics" class="py-5">
     <div class="container">

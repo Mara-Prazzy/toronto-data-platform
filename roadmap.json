@@ -1,0 +1,26 @@
+[
+  {
+    "phase": "Planning",
+    "start": 0,
+    "end": 3,
+    "details": "Stakeholder workshops, tech stack selection, initial planning."
+  },
+  {
+    "phase": "Pilot Implementation",
+    "start": 2,
+    "end": 6,
+    "details": "MVP development, ETL pipelines, data governance testing."
+  },
+  {
+    "phase": "Scaling",
+    "start": 4,
+    "end": 8,
+    "details": "Citywide rollout, pipeline optimization, analytics enhancements."
+  },
+  {
+    "phase": "Optimization",
+    "start": 6,
+    "end": 12,
+    "details": "AI/ML adoption, performance monitoring, training programs."
+  }
+]
