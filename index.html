@@ -4,40 +4,112 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>City of Toronto Data Platform</title>
-  <link rel="stylesheet" href="style.css">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+    }
+    .hero {
+      background: linear-gradient(135deg, #007bff, #6610f2);
+      color: white;
+    }
+    .tooltip-custom {
+      position: absolute;
+      background-color: #333;
+      color: #fff;
+      padding: 5px;
+      border-radius: 5px;
+      display: none;
+    }
+    footer a {
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body>
+  <!-- Navbar -->
   <header>
-    <h1>City of Toronto Data Platform</h1>
-    <nav>
-      <a href="#architecture">Architecture</a>
-      <a href="#roadmap">Roadmap</a>
-      <a href="#metrics">Success Metrics</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="#">Toronto Data Platform</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="#architecture">Architecture</a></li>
+            <li class="nav-item"><a class="nav-link" href="#roadmap">Roadmap</a></li>
+            <li class="nav-item"><a class="nav-link" href="#metrics">Metrics</a></li>
+          </ul>
+        </div>
+      </div>
     </nav>
   </header>
 
-  <main>
-    <section id="architecture">
-      <h2>Architecture Diagram</h2>
-      <img src="assets/architecture-diagram.png" alt="AWS Architecture Diagram">
-      <p>Interactive elements will go here.</p>
-    </section>
+  <!-- Hero Section -->
+  <section class="hero text-center py-5">
+    <div class="container">
+      <h1 class="display-4">Transforming Toronto's Data</h1>
+      <p class="lead">A scalable and innovative platform for 47 divisions and 10 agencies.</p>
+      <a href="#architecture" class="btn btn-light btn-lg">Explore Architecture</a>
+    </div>
+  </section>
 
-    <section id="roadmap">
-      <h2>Roadmap</h2>
-      <p>Details about the project timeline and milestones.</p>
-    </section>
+  <!-- Architecture Section -->
+  <section id="architecture" class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">Final State Architecture</h2>
+      <div class="text-center">
+        <img src="assets/architecture-diagram.png" alt="AWS Architecture Diagram" class="img-fluid rounded shadow">
+      </div>
+      <p class="mt-4 text-center">Click on components to learn more about the architecture.</p>
+      <div id="tooltip" class="tooltip-custom"></div>
+    </div>
+  </section>
 
-    <section id="metrics">
-      <h2>Success Metrics</h2>
-      <p>Technical and business metrics showcasing platform success.</p>
-    </section>
-  </main>
+  <!-- Roadmap Section -->
+  <section id="roadmap" class="bg-light py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">Project Roadmap</h2>
+      <div id="timeline" class="border p-3 rounded bg-white shadow-sm"></div>
+    </div>
+  </section>
 
-  <footer>
-    <p>© 2024 City of Toronto</p>
+  <!-- Success Metrics Section -->
+  <section id="metrics" class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">Success Metrics</h2>
+      <div class="row">
+        <div class="col-md-6">
+          <canvas id="metricsChart" class="shadow-sm rounded"></canvas>
+        </div>
+        <div class="col-md-6 d-flex align-items-center">
+          <ul class="list-unstyled">
+            <li><strong>Uptime:</strong> >99.9%</li>
+            <li><strong>Data Processing:</strong> <5 seconds</li>
+            <li><strong>Adoption Rate:</strong> 90%</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white text-center py-3">
+    <div class="container">
+      <p>&copy; 2024 City of Toronto Data Platform</p>
+      <a href="#" class="text-light me-2"><i class="bi bi-linkedin"></i></a>
+      <a href="#" class="text-light"><i class="bi bi-github"></i></a>
+    </div>
   </footer>
 
+  <!-- Bootstrap Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
