@@ -1,21 +1,113 @@
 /* Timeline Styles */
 .timeline {
-    border-left: 3px solid #007bff;
-    padding-left: 20px;
-    position: relative;
-  }
-  .timeline-item {
-    position: relative;
-    margin-bottom: 20px;
-  }
-  .timeline-item::before {
-    content: '';
-    position: absolute;
-    left: -12px;
-    top: 10px;
-    width: 12px;
-    height: 12px;
-    background: #007bff;
-    border-radius: 50%;
-  }
-  
+  border-left: 3px solid #007bff;
+  padding-left: 20px;
+  position: relative;
+}
+.timeline-item {
+  position: relative;
+  margin-bottom: 20px;
+}
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -12px;
+  top: 10px;
+  width: 12px;
+  height: 12px;
+  background: #007bff;
+  border-radius: 50%;
+}
+
+/* Alignment with Past Experience */
+.timeline {
+position: relative;
+margin: 2rem 0;
+padding: 1rem 0;
+border-left: 3px solid #007bff;
+}
+.timeline-item {
+position: relative;
+margin-left: 20px;
+padding: 1rem 0;
+}
+.timeline-item:before {
+content: "";
+position: absolute;
+top: 0;
+left: -10px;
+width: 20px;
+height: 20px;
+background-color: #007bff;
+border-radius: 50%;
+}
+.timeline-item h5 {
+font-weight: bold;
+color: #333;
+}
+.timeline-item p {
+margin: 0.5rem 0 0;
+font-size: 0.9rem;
+color: #555;
+}
+
+/* General styles for the project */
+body {
+font-family: 'Roboto', sans-serif;
+}
+.hero {
+background: linear-gradient(135deg, #007bff, #6610f2);
+color: white;
+}
+.tooltip-custom {
+position: absolute;
+background-color: #333;
+color: #fff;
+padding: 5px;
+border-radius: 5px;
+display: none;
+}
+footer a {
+text-decoration: none;
+}
+
+/* Resource Allocation Chart */
+.resource-allocation-container {
+display: flex;
+flex-wrap: wrap;
+justify-content: space-between;
+}
+.resource-allocation-chart {
+flex: 1 1 45%;
+margin: 20px;
+}
+
+/* Success Metrics Chart */
+.success-metrics-container {
+display: flex;
+flex-wrap: wrap;
+justify-content: space-around;
+}
+.success-metrics-chart {
+flex: 1 1 45%;
+margin: 20px;
+}
+
+
+/* Hero Page */
+#about-me img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 3px solid #007bff;
+}
+
+#about-me a {
+  margin-top: 15px;
+}
+
+/* Certification */
+#certifications img {
+  max-height: 100px;
+  margin-bottom: 10px;
+}

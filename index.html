@@ -8,6 +8,11 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="icon" href="https://mp-toronto-data-platform.s3.ca-central-1.amazonaws.com/favicon.ico">
   <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
@@ -59,6 +64,9 @@
       <a href="#architecture" class="btn btn-light btn-lg">Explore Architecture</a>
     </div>
   </section>
+
+  <!-- Tooltip -->
+  <div id="tooltip" class="tooltip-custom"></div>
 
   <!-- Architecture Section -->
   <section id="architecture" class="py-5">
@@ -114,58 +122,266 @@
     </div>
   </section>
 
-  <section id="resource-plan" class="py-5">
+  <!-- Resource Allocation session -->
+  <section id="resource-plan" class="py-5 bg-light">
     <div class="container">
       <h2 class="text-center mb-4">Resource Plan</h2>
       <p class="text-center">
-        The resource plan outlines the team, budget, and infrastructure needed to implement and sustain the Toronto Data Platform.
+        A comprehensive resource plan ensures the success of the Toronto Data Platform by aligning team, budget, and strategy effectively.
       </p>
-      <h3>Team Composition</h3>
-      <ul>
-        <li><strong>Data Engineers:</strong> Develop and maintain ETL/ELT pipelines, ensure data integrity, and optimize processing.</li>
-        <li><strong>Cloud Engineers:</strong> Manage cloud infrastructure, implement Infrastructure as Code (IaC) using Terraform, and ensure scalability.</li>
-        <li><strong>Data Analysts:</strong> Analyze and visualize data, create dashboards, and support data-driven decision-making.</li>
-        <li><strong>Project Manager:</strong> Coordinate timelines, manage stakeholder communications, and ensure milestones are met.</li>
-        <li><strong>ML Engineers:</strong> Develop, train, and deploy machine learning models to enhance platform capabilities.</li>
-        <li><strong>Data Governance Specialist:</strong> Define and enforce data governance policies, ensuring compliance and quality.</li>
-      </ul>
-      <h3>Budget and Infrastructure</h3>
-      <ul>
-        <li><strong>Personnel:</strong> $2.5M/year for salaries of 15 team members, including engineers, analysts, and specialists.</li>
-        <li><strong>Cloud Infrastructure:</strong> $500K/year for AWS services such as S3, Redshift, Glue, Kinesis, and SageMaker.</li>
-        <li><strong>Training and Development:</strong> $100K/year for workshops, certifications, and team upskilling.</li>
-        <li><strong>Tools and Licenses:</strong> $150K/year for third-party tools, software licenses, and security solutions.</li>
-      </ul>
-      <h3>Resource Allocation Strategy</h3>
-      <p>Resource allocation is divided into phases to ensure a smooth rollout and optimal utilization:</p>
-      <ul>
-        <li><strong>Phase 1 (Months 1-6):</strong> Focus on hiring core team members, finalizing architecture, and initial infrastructure setup.</li>
-        <li><strong>Phase 2 (Months 7-12):</strong> Allocate resources for MVP development, testing, and addressing initial feedback.</li>
-        <li><strong>Phase 3 (Months 13-24):</strong> Scale the platform citywide, optimize pipelines, and integrate advanced analytics features.</li>
-        <li><strong>Phase 4 (Months 25-36):</strong> Focus on AI/ML adoption, performance monitoring, and staff training.</li>
-      </ul>
-    </div>
-  </section>  
+      <div class="row mb-5">
+        <!-- Team Composition -->
+        <div class="col-md-6">
+          <h3><i class="fas fa-users"></i> Team Composition</h3>
+          <ul class="list-group">
+            <li class="list-group-item">
+              <strong>Data Engineers:</strong> Develop and maintain ETL/ELT pipelines, ensure data integrity, and optimize processing.
+            </li>
+            <li class="list-group-item">
+              <strong>Cloud Engineers:</strong> Manage cloud infrastructure, implement Infrastructure as Code (IaC) using Terraform, and ensure scalability.
+            </li>
+            <li class="list-group-item">
+              <strong>Data Analysts:</strong> Analyze and visualize data, create dashboards, and support data-driven decision-making.
+            </li>
+            <li class="list-group-item">
+              <strong>Project Manager:</strong> Coordinate timelines, manage stakeholder communications, and ensure milestones are met.
+            </li>
+            <li class="list-group-item">
+              <strong>ML Engineers:</strong> Develop, train, and deploy machine learning models to enhance platform capabilities.
+            </li>
+            <li class="list-group-item">
+              <strong>Data Governance Specialist:</strong> Define and enforce data governance policies, ensuring compliance and quality.
+            </li>
+          </ul>
+        </div>
   
-  <!-- Success Metrics Section -->
-  <section id="metrics" class="py-5">
+        <!-- Budget and Infrastructure -->
+        <div class="col-md-6">
+          <h3><i class="fas fa-dollar-sign"></i> Budget and Infrastructure</h3>
+          <ul class="list-group">
+            <li class="list-group-item">
+              <strong>Personnel:</strong> $2.5M/year for salaries of 15 team members, including engineers, analysts, and specialists.
+            </li>
+            <li class="list-group-item">
+              <strong>Cloud Infrastructure:</strong> $500K/year for AWS services such as S3, Redshift, Glue, Kinesis, and SageMaker.
+            </li>
+            <li class="list-group-item">
+              <strong>Training and Development:</strong> $100K/year for workshops, certifications, and team upskilling.
+            </li>
+            <li class="list-group-item">
+              <strong>Tools and Licenses:</strong> $150K/year for third-party tools, software licenses, and security solutions.
+            </li>
+          </ul>
+        </div>
+      </div>
+  
+    <!-- Resource Allocation Section -->
+    <section id="resource-plan" class="py-5 bg-light">
+      <div class="container">
+        <h2 class="text-center mb-4">Resource Allocation Strategy</h2>
+        <p class="text-center">
+          View the resource allocation timeline and distribution across all project phases.
+        </p>
+        <div class="row gy-5 align-items-center">
+          <!-- Bar Chart -->
+          <div class="col-lg-6">
+            <h3 class="text-center"><i class="fas fa-tasks"></i> Resource Allocation (Bar Chart)</h3>
+            <canvas id="resourceAllocationBarChart" width="400" height="300"></canvas>
+          </div>
+          <!-- Doughnut Chart -->
+          <div class="col-lg-6">
+            <h3 class="text-center"><i class="fas fa-chart-pie"></i> Resource Distribution (Doughnut Chart)</h3>
+            <canvas id="resourceAllocationDoughnutChart" width="400" height="300"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <section id="success-metrics" class="py-5">
     <div class="container">
       <h2 class="text-center mb-4">Success Metrics</h2>
-      <div class="row">
-        <div class="col-md-6">
-          <canvas id="metricsChart" class="shadow-sm rounded"></canvas>
+      <p class="text-center">
+        Success for the Toronto Data Platform is defined by measurable business outcomes and robust technical performance.
+      </p>
+      <!-- Business KPIs Chart -->
+      <div class="row mb-4">
+        <div class="col">
+          <h3 class="text-center">Business KPIs (Combined)</h3>
+          <canvas id="businessKPIsChart"></canvas>
         </div>
-        <div class="col-md-6 d-flex align-items-center">
-          <ul class="list-unstyled">
-            <li><strong>Uptime:</strong> >99.9%</li>
-            <li><strong>Data Processing:</strong> <5 seconds</li>
-            <li><strong>Adoption Rate:</strong> 90%</li>
-          </ul>
+      </div>
+      <!-- Technical KPIs Chart -->
+      <div class="row mb-4">
+        <div class="col">
+          <h3 class="text-center">Technical KPIs (Combined)</h3>
+          <canvas id="technicalKPIsChart"></canvas>
         </div>
       </div>
     </div>
   </section>
 
+  <section id="change-management" class="py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center mb-4">Change Management</h2>
+      <p class="text-center">Ensuring a smooth transition and alignment across 47 divisions and 10 agencies.</p>
+  
+      <!-- Key Objectives -->
+      <div class="row mb-4">
+        <div class="col-md-4 text-center">
+          <i class="fas fa-users fa-3x text-primary mb-2"></i>
+          <h5>Stakeholder Alignment</h5>
+          <p>Engage stakeholders early and ensure their input is integrated into the process.</p>
+        </div>
+        <div class="col-md-4 text-center">
+          <i class="fas fa-chalkboard-teacher fa-3x text-success mb-2"></i>
+          <h5>Training Programs</h5>
+          <p>Develop comprehensive training materials for all divisions and agencies.</p>
+        </div>
+        <div class="col-md-4 text-center">
+          <i class="fas fa-chart-line fa-3x text-warning mb-2"></i>
+          <h5>Continuous Feedback</h5>
+          <p>Implement mechanisms to gather and act on feedback throughout the process.</p>
+        </div>
+      </div>
+  
+      <!-- Interactive Timeline -->
+      <div class="mb-4">
+        <h3><i class="fas fa-stream"></i> Change Management Timeline</h3>
+        <canvas id="changeTimelineChart" width="800" height="400"></canvas>
+      </div>
+  
+      <!-- Strategies -->
+      <h3><i class="fas fa-lightbulb"></i> Key Strategies</h3>
+      <div class="accordion" id="changeStrategies">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              Communication
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne">
+            <div class="accordion-body">
+              Clear, consistent communication through newsletters, town halls, and one-on-one meetings.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Training
+            </button>
+          </h2>
+          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo">
+            <div class="accordion-body">
+              Tailored training for technical and non-technical users to facilitate platform adoption.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              Feedback Mechanisms
+            </button>
+          </h2>
+          <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree">
+            <div class="accordion-body">
+              Use surveys and focus groups to identify challenges and refine strategies.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="past-experience" class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">Alignment with Past Experience</h2>
+      <p class="text-center">
+        My experience in data platforms, engineering, and leadership aligns seamlessly with the requirements of this role.
+      </p>
+  
+      <!-- Timeline -->
+      <div class="timeline">
+        <div class="timeline-item">
+          <h5>Data Architect at Wavemaker (2019-2021)</h5>
+          <p>
+            - Delivered a data visualization portal for C-suite executives.<br>
+            - Developed data pipelines and implemented machine learning algorithms.
+          </p>
+        </div>
+        <div class="timeline-item">
+          <h5>Senior Data Scientist at TouchMark (2014-2019)</h5>
+          <p>
+            - Architected deep learning models for demand prediction using AWS and Azure.<br>
+            - Applied statistical and Bayesian methods in healthcare.
+          </p>
+        </div>
+        <div class="timeline-item">
+          <h5>Technical Director at Deighton Associates (2021-2022)</h5>
+          <p>
+            - Achieved a 30% increase in data-driven decision-making efficiency.<br>
+            - Reduced time-to-market for new products by 20%.
+          </p>
+        </div>
+        <div class="timeline-item">
+          <h5>Open Data & IT Director at Youthful Cities (2023-2024)</h5>
+          <p>
+            - Led cloud migration to AWS, reducing infrastructure costs by 30%.<br>
+            - Deployed a data pipeline integrating OpenAI for enhanced decision-making.
+          </p>
+        </div>
+        <!-- Research Assistant -->
+        <div class="timeline-item">
+          <h5>Research Assistant at Toronto Metropolitan University (2021-Present)</h5>
+          <p>
+            Mentored a team of 10 data scientists to improve project completion rate by 20%. Implemented data collection 
+            architectures reducing processing time by 40%. Collaborated with Copenhagen University, enhancing data integration 
+            efficiency by 30%.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- About Me Section -->
+  <section id="about-me" class="hero text-center py-5 bg-light">
+    <div class="container">
+      <img src="assets/Kumara_pic.jpeg" alt="Your Photo" class="rounded-circle mb-3" style="width: 150px; height: 150px; border: 3px solid #007bff;">
+      <h1 class="display-4">Kumara Prasanna Jayaraju</h1>
+      <p class="lead"> Cloud Data Architect | Reseach Assistant | AI Enthusiast </p>
+      <a href="https://www.linkedin.com/in/kumara-prasanna-j-014423101/" target="_blank" class="btn btn-primary btn-lg">
+        <i class="fab fa-linkedin"></i> Connect on LinkedIn
+      </a>
+    </div>
+  </section>
+
+  <!-- Certifications Section -->
+  <section id="certifications" class="py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center mb-4">Certifications</h2>
+      <div class="row text-center">
+        <div class="col-md-3 mb-4">
+          <img src="assets/aws-certified-sa-pro.png" alt="AWS Certified Solutions Architect - Professional" class="img-fluid" style="max-height: 100px;">
+          <p>AWS Solutions Architect - Professional</p>
+        </div>
+        <div class="col-md-3 mb-4">
+          <img src="assets/aws-certified-security.png" alt="AWS Security Specialty" class="img-fluid" style="max-height: 100px;">
+          <p>AWS Security Specialty</p>
+        </div>
+        <div class="col-md-3 mb-4">
+          <img src="assets/azure-solutions-architect.png" alt="Azure Solutions Architect Expert" class="img-fluid" style="max-height: 100px;">
+          <p>Azure Solutions Architect Expert</p>
+        </div>
+        <div class="col-md-3 mb-4">
+          <img src="assets/azure-devops-engineer.png" alt="Azure DevOps Engineer Expert" class="img-fluid" style="max-height: 100px;">
+          <p>Azure DevOps Engineer Expert</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
   <!-- Footer -->
   <footer class="bg-dark text-white text-center py-3">
     <div class="container">
