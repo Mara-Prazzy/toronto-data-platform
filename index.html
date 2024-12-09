@@ -12,9 +12,18 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   <!-- Bootstrap Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-  <link rel="icon" href="https://mp-toronto-data-platform.s3.ca-central-1.amazonaws.com/favicon.ico">
-  <!-- Chart.js -->
+  <link rel="icon" href="favicon.png" type="image/png">
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Highcharts Gantt Library -->
+  <script src="https://code.highcharts.com/gantt/highcharts-gantt.js"></script>
+
+  <!-- Chart.js (Optional for other charts) -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+
   <style>
     body {
       font-family: 'Roboto', sans-serif;
@@ -23,204 +32,550 @@
       background: linear-gradient(135deg, #007bff, #6610f2);
       color: white;
     }
-    .tooltip-custom {
-      position: absolute;
-      background-color: #333;
-      color: #fff;
-      padding: 5px;
-      border-radius: 5px;
-      display: none;
-    }
     footer a {
       text-decoration: none;
     }
   </style>
 </head>
+  
+  
 <body>
+
   <!-- Navbar -->
-  <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container">
-        <a class="navbar-brand" href="#">Toronto Data Platform</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link" href="#architecture">Architecture</a></li>
-            <li class="nav-item"><a class="nav-link" href="#roadmap">Roadmap</a></li>
-            <li class="nav-item"><a class="nav-link" href="#metrics">Metrics</a></li>
-          </ul>
-        </div>
+  <!-- Navbar -->
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">Toronto Data Platform</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#architecture">Architecture</a></li>
+          <li class="nav-item"><a class="nav-link" href="#roadmap">Roadmap</a></li>
+          <li class="nav-item"><a class="nav-link" href="#resource-planning">Resource Planning</a></li>
+          <li class="nav-item"><a class="nav-link" href="#success-metrics">Success Metrics</a></li>
+          <li class="nav-item"><a class="nav-link" href="#change-management">Change Management</a></li>
+          <li class="nav-item"><a class="nav-link" href="#past-experience">Experience</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about-me">About Me</a></li>
+        </ul>
       </div>
-    </nav>
-  </header>
+    </div>
+  </nav>
+</header>
+  
+
+
 
   <!-- Hero Section -->
   <section class="hero text-center py-5">
     <div class="container">
       <h1 class="display-4">Transforming Toronto's Data</h1>
       <p class="lead">A scalable and innovative platform for 47 divisions and 10 agencies.</p>
-      <a href="#architecture" class="btn btn-light btn-lg">Explore Architecture</a>
     </div>
   </section>
-
+  
   <!-- Tooltip -->
   <div id="tooltip" class="tooltip-custom"></div>
 
   <!-- Architecture Section -->
   <section id="architecture" class="py-5">
     <div class="container">
-      <h2>Final State Architecture</h2>
-      <p>
-        The final state architecture for the Toronto Data Platform is designed to empower data-driven decision-making, 
-        enable seamless data sharing across divisions, and support advanced analytics with scalability and reliability. 
-        The platform integrates AWS services to ensure performance and adaptability.
+      <h2 class="text-center mb-4">Final State Architecture</h2>
+      <p class="text-center">
+        The final state architecture for the Toronto Data Platform is designed to empower data-driven decision-making,
+        enable seamless data sharing across divisions, and support advanced analytics with scalability and reliability.
       </p>
-      <h3>Key Components</h3>
-      <ul>
-        <li>
-          <strong>Amazon S3:</strong> Serves as the central data lake, storing raw, processed, and curated datasets.
-        </li>
-        <li>
-          <strong>AWS Glue:</strong> Facilitates ETL processes, data transformation, and data cataloging.
-        </li>
-        <li>
-          <strong>Amazon Redshift:</strong> A fully managed data warehouse for analytics and reporting.
-        </li>
-        <li>
-          <strong>Amazon Kinesis:</strong> Real-time data streaming for ingesting and analyzing live data.
-        </li>
-        <li>
-          <strong>Amazon SageMaker:</strong> Supports machine learning model development, training, and deployment.
-        </li>
-        <li>
-          <strong>AWS Lambda:</strong> Event-driven computing for serverless data processing.
-        </li>
-        <li>
-          <strong>IAM:</strong> Ensures secure access control and governance for data and resources.
-        </li>
-      </ul>
+  
+      <!-- Architecture Diagram -->
       <div class="text-center">
-        <img src="assets/architecture-diagram.png" alt="AWS Architecture Diagram" class="img-fluid rounded shadow">
+        <img 
+          src="assets/architecture-diagram-hd.png" 
+          alt="Enterprise Data Platform - City of Toronto" 
+          class="img-fluid rounded shadow"
+          style="max-width: 100%; height: auto;"
+        />
       </div>
-      <p>
-        Click on the components in the diagram to learn more about their roles and functions.
-      </p>
-    </div>
-  </section>
+      <p class="text-center">This diagram highlights the scalable, reliable, and user-friendly architecture of the Toronto Data Platform.</p>
   
-
-  <!-- Roadmap Section -->
-  <section id="roadmap" class="py-5 bg-light">
-    <div class="container">
-      <h2 class="text-center mb-4">Project Roadmap</h2>
-      <p class="text-center">
-        This timeline represents the progression from planning to optimization, highlighting key milestones and deliverables.
-      </p>
-      <canvas id="roadmapChart" width="800" height="400"></canvas>
-    </div>
-  </section>
-
-  <!-- Resource Allocation session -->
-  <section id="resource-plan" class="py-5 bg-light">
-    <div class="container">
-      <h2 class="text-center mb-4">Resource Plan</h2>
-      <p class="text-center">
-        A comprehensive resource plan ensures the success of the Toronto Data Platform by aligning team, budget, and strategy effectively.
-      </p>
-      <div class="row mb-5">
-        <!-- Team Composition -->
-        <div class="col-md-6">
-          <h3><i class="fas fa-users"></i> Team Composition</h3>
-          <ul class="list-group">
-            <li class="list-group-item">
-              <strong>Data Engineers:</strong> Develop and maintain ETL/ELT pipelines, ensure data integrity, and optimize processing.
-            </li>
-            <li class="list-group-item">
-              <strong>Cloud Engineers:</strong> Manage cloud infrastructure, implement Infrastructure as Code (IaC) using Terraform, and ensure scalability.
-            </li>
-            <li class="list-group-item">
-              <strong>Data Analysts:</strong> Analyze and visualize data, create dashboards, and support data-driven decision-making.
-            </li>
-            <li class="list-group-item">
-              <strong>Project Manager:</strong> Coordinate timelines, manage stakeholder communications, and ensure milestones are met.
-            </li>
-            <li class="list-group-item">
-              <strong>ML Engineers:</strong> Develop, train, and deploy machine learning models to enhance platform capabilities.
-            </li>
-            <li class="list-group-item">
-              <strong>Data Governance Specialist:</strong> Define and enforce data governance policies, ensuring compliance and quality.
-            </li>
-          </ul>
-        </div>
-  
-        <!-- Budget and Infrastructure -->
-        <div class="col-md-6">
-          <h3><i class="fas fa-dollar-sign"></i> Budget and Infrastructure</h3>
-          <ul class="list-group">
-            <li class="list-group-item">
-              <strong>Personnel:</strong> $2.5M/year for salaries of 15 team members, including engineers, analysts, and specialists.
-            </li>
-            <li class="list-group-item">
-              <strong>Cloud Infrastructure:</strong> $500K/year for AWS services such as S3, Redshift, Glue, Kinesis, and SageMaker.
-            </li>
-            <li class="list-group-item">
-              <strong>Training and Development:</strong> $100K/year for workshops, certifications, and team upskilling.
-            </li>
-            <li class="list-group-item">
-              <strong>Tools and Licenses:</strong> $150K/year for third-party tools, software licenses, and security solutions.
-            </li>
-          </ul>
-        </div>
-      </div>
-  
-    <!-- Resource Allocation Section -->
-    <section id="resource-plan" class="py-5 bg-light">
-      <div class="container">
-        <h2 class="text-center mb-4">Resource Allocation Strategy</h2>
-        <p class="text-center">
-          View the resource allocation timeline and distribution across all project phases.
+      <!-- Key Components Section -->
+      <div class="text-center mt-4">
+        <p>
+          To learn more about the key components, click the button below to explore the detailed insights.
         </p>
-        <div class="row gy-5 align-items-center">
-          <!-- Bar Chart -->
-          <div class="col-lg-6">
-            <h3 class="text-center"><i class="fas fa-tasks"></i> Resource Allocation (Bar Chart)</h3>
-            <canvas id="resourceAllocationBarChart" width="400" height="300"></canvas>
+        <button class="explore-btn" data-bs-toggle="collapse" data-bs-target="#keyComponentsCollapse" aria-expanded="false" aria-controls="keyComponentsCollapse">
+          Explore Key Components
+        </button>
+      </div>
+  
+      <!-- Collapsible Key Components -->
+      <div id="keyComponentsCollapse" class="collapse mt-4">
+        <h3>Key Components</h3>
+        <ul>
+          <li><strong>Amazon S3:</strong> Central data lake for storing Raw, Aggregated, Curated and Extended datasets.</li>
+          <li><strong>AWS Glue:</strong> Facilitates ETL processes, data transformation, and cataloging.</li>
+          <li><strong>Amazon Redshift:</strong> Managed data warehouse for analytics and reporting.</li>
+          <li><strong>Amazon Kinesis:</strong> Real-time data streaming for ingestion and analysis.</li>
+          <li><strong>Amazon SageMaker:</strong> Supports ML model development, training, and deployment.</li>
+          <li><strong>AWS Lambda:</strong> Serverless data processing.</li>
+          <li><strong>IAM:</strong> Secure access control and governance for resources.</li>
+          <li><strong>Amazon DataZone:</strong> Simplifies data discovery, sharing, and governance across teams.</li>
+          <li><strong>AWS Organizations:</strong> Centralized management of multiple AWS accounts for governance and security.</li>
+          <li><strong>CloudFormation:</strong> Infrastructure-as-code service to automate AWS resource provisioning.</li>
+          <li><strong>Iceberg Table:</strong> Open table format for high-performance analytical queries on large datasets.</li>
+          <li><strong>Databricks:</strong> Unified analytics platform for data engineering, machine learning, and collaboration.</li>
+          <li><strong>PySpark:</strong> Python-based API for distributed data processing and machine learning with Spark.</li>
+          <li><em>& much more...</em></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Roadmap Section -->
+  <section id="roadmap-section" class="py-5">
+  <div class="container">
+    <h2 class="text-center mb-4">Roadmap</h2>
+    <p class="text-center">
+      Below is the interactive roadmap that highlights the key phases in building and operationalizing the Toronto Data Platform.
+    </p>
+
+    <!-- Gantt Chart Container -->
+    <div id="roadmapChartContainer">
+      <div id="roadmapChart"></div>
+    </div>
+
+    <!-- Explore Button for Key Insights -->
+    <div class="text-center mt-4">
+      <p>To explore key insights and details of the roadmap, click the button below:</p>
+      <button class="explore-btn" type="button" data-bs-toggle="collapse" data-bs-target="#roadmapDetails" aria-expanded="false" aria-controls="roadmapDetails">
+        Explore Key Insights
+      </button>
+    </div>
+
+    <!-- Collapsible Key Insights Section -->
+    <div class="collapse mt-3" id="roadmapDetails">
+      <div class="accordion" id="roadmapAccordion">
+          <!-- Phase 1 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Awareness & Stakeholder Engagement
+              </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne">
+              <div class="accordion-body">
+                <p><strong>Key Activities:</strong> Stakeholder engagement, awareness programs, and initial buy-ins.</p>
+                <p><strong>Major Milestones:</strong> Approval from leadership, initial stakeholder alignment.</p>
+                <p><strong>Dependencies:</strong> Alignment with division heads and external agencies.</p>
+              </div>
+            </div>
           </div>
-          <!-- Doughnut Chart -->
-          <div class="col-lg-6">
-            <h3 class="text-center"><i class="fas fa-chart-pie"></i> Resource Distribution (Doughnut Chart)</h3>
-            <canvas id="resourceAllocationDoughnutChart" width="400" height="300"></canvas>
+
+          <!-- Phase 2 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Design
+              </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo">
+              <div class="accordion-body">
+                <p><strong>Key Activities:</strong> Architectural design, tool evaluation, and strategy planning.</p>
+                <p><strong>Major Milestones:</strong> Approval of architecture and tools, finalized roadmap for development.</p>
+                <p><strong>Dependencies:</strong> Feedback from stakeholders, tool availability, and resource allocation.</p>
+              </div>
+            </div>
           </div>
+
+          <!-- Phase 3 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                Development
+              </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree">
+              <div class="accordion-body">
+                <p><strong>Key Activities:</strong> Build and configure data pipelines, integration of tools and platforms.</p>
+                <p><strong>Major Milestones:</strong> Completion of ETL/ELT pipelines, data lake setup, initial data ingestion.</p>
+                <p><strong>Dependencies:</strong> Development resources, cloud infrastructure readiness, and tool configurations.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phase 4 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFour">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                Pilot Implementation
+              </button>
+            </h2>
+            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour">
+              <div class="accordion-body">
+                <p><strong>Key Activities:</strong> Run pilot tests, collect feedback, and fine-tune the platform.</p>
+                <p><strong>Major Milestones:</strong> Successful pilot testing, stakeholder feedback collected and analyzed.</p>
+                <p><strong>Dependencies:</strong> Division-specific data readiness, cooperation from pilot teams.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phase 5 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFive">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                Scaling
+              </button>
+            </h2>
+            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive">
+              <div class="accordion-body">
+                <p><strong>Key Activities:</strong> Full-scale deployment, expanding to all divisions and agencies.</p>
+                <p><strong>Major Milestones:</strong> Platform adoption across all divisions, smooth data sharing processes established.</p>
+                <p><strong>Dependencies:</strong> Cross-divisional coordination, robust infrastructure.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phase 6 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingSix">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                Adoption & Enablement
+              </button>
+            </h2>
+            <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix">
+              <div class="accordion-body">
+                <p><strong>Key Activities:</strong> Training sessions, adoption campaigns, and user onboarding.</p>
+                <p><strong>Major Milestones:</strong> Completion of training, platform usage monitoring begins.</p>
+                <p><strong>Dependencies:</strong> Readiness of training materials, cooperation from users.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phase 7 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingSeven">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                Monitoring & Optimization
+              </button>
+            </h2>
+            <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven">
+              <div class="accordion-body">
+                <p><strong>Key Activities:</strong> Monitor performance, identify bottlenecks, and optimize processes.</p>
+                <p><strong>Major Milestones:</strong> Reports on platform efficiency, recommendations for improvements.</p>
+                <p><strong>Dependencies:</strong> Availability of monitoring tools, real-time data feedback loops.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phase 8 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingEight">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                Future Enhancements
+              </button>
+            </h2>
+            <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight">
+              <div class="accordion-body">
+                <p><strong>Key Activities:</strong> Identify new use cases, integrate advanced analytics, and enhance functionalities.</p>
+                <p><strong>Major Milestones:</strong> Implementation of new features, rollout of advanced tools.</p>
+                <p><strong>Dependencies:</strong> Innovation team input, market trend analysis, and stakeholder feedback.</p>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
-    </section>
+    </div>
+  </section>
+  
+  
+  <!-- Resource Planning Section -->
+  <section id="resource-planning" class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">Resource Planning</h2>
+      <p class="text-center">
+        The table and charts below represent the allocation of resources required for the Toronto Data Platform project.
+      </p>
+  
+      <!-- Resource Planning Table -->
+      <div class="table-responsive mb-5">
+        <table class="table table-bordered text-center">
+          <thead class="table-dark">
+            <tr>
+              <th>Role</th>
+              <th>Count</th>
+              <th>Estimated Cost/Year</th>
+              <th>Assigned Phases</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Data Engineers</td>
+              <td>5</td>
+              <td>$600,000</td>
+              <td>All Phases</td>
+            </tr>
+            <tr>
+              <td>Cloud Engineers</td>
+              <td>2</td>
+              <td>$250,000</td>
+              <td>Design, Development, Scaling</td>
+            </tr>
+            <tr>
+              <td>DevOps Professionals</td>
+              <td>2</td>
+              <td>$240,000</td>
+              <td>Design, Development, Pilot</td>
+            </tr>
+            <tr>
+              <td>Data Governance Specialist</td>
+              <td>1</td>
+              <td>$120,000</td>
+              <td>Awareness, Design, Adoption</td>
+            </tr>
+            <tr>
+              <td>Machine Learning Engineers</td>
+              <td>1</td>
+              <td>$150,000</td>
+              <td>Design, Development, Pilot, Scaling</td>
+            </tr>
+            <tr>
+              <td>Data Analysts</td>
+              <td>2</td>
+              <td>$180,000</td>
+              <td>Awareness, Design, Adoption</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  
+      <!-- Chart Section -->
+      <div class="chart-container">
+        <canvas id="resourceAllocationBarChart" class="resource-allocation-chart"></canvas>
+        <canvas id="resourceAllocationPieChart" class="resource-allocation-chart" width="420" height="420"></canvas>
+      </div>
+      
+
+      <!-- Explore Key Insights -->
+      <div class="text-center mt-4">
+        <p>
+          To learn more about the resource allocation strategy, click the button below to expand the key insights section.
+        </p>
+        <button class="explore-btn" data-bs-toggle="collapse" data-bs-target="#resourceInsightsCollapse" aria-expanded="false" aria-controls="resourceInsightsCollapse">
+          Explore Key Insights
+        </button>
+      </div>
+
+      <!-- Collapsible Key Insights Section -->
+      <div id="resourceInsightsCollapse" class="collapse mt-4">
+        <h4>Key Insights</h4>
+        <ul>
+          <li><strong>Data Engineers:</strong> Core team members ensuring smooth data pipeline development and integration.</li>
+          <li><strong>Cloud Engineers:</strong> Critical for building and scaling a robust cloud infrastructure.</li>
+          <li><strong>DevOps Professionals:</strong> Streamline deployment processes and enable agile development practices.</li>
+          <li><strong>Machine Learning Engineers:</strong> Innovate with predictive models and enhance data-driven decision-making.</li>
+          <li><strong>Data Analysts:</strong> Provide actionable insights and facilitate informed decision-making.</li>
+          <li><strong>Data Governance Specialists:</strong> Ensure compliance and maintain data quality across all phases.</li>
+        </ul>
+        <p>
+          The resource allocation plan emphasizes collaboration and efficiency while focusing on critical phases to meet the Toronto Data Platform's objectives. Strategic investments in training and technology ensure optimal resource utilization and long-term project success.
+        </p>
+      </div>
+    </div>
   </section>
 
-  <section id="success-metrics" class="py-5">
+  <!-- Success Metrics -->
+  <section id="success-metrics">
     <div class="container">
       <h2 class="text-center mb-4">Success Metrics</h2>
       <p class="text-center">
-        Success for the Toronto Data Platform is defined by measurable business outcomes and robust technical performance.
+        The table below compared the current and target metrics required for the Toronto Data Platform project.
       </p>
-      <!-- Business KPIs Chart -->
-      <div class="row mb-4">
-        <div class="col">
-          <h3 class="text-center">Business KPIs (Combined)</h3>
-          <canvas id="businessKPIsChart"></canvas>
+
+    <!-- Header with Label and Button -->
+    <div id="metrics-header">
+      <h3 id="metrics-label">Metrics Overview</h3>
+      <button id="toggle-metrics">Toggle Highlight</button>
+    </div>
+  
+    <!-- Metrics Container -->
+    <div class="metrics-container">
+      <!-- Technical KPIs Section -->
+      <div class="metrics-section">
+        <h3>Technical KPIs</h3>
+        
+        <!-- Data Freshness -->
+        <div class="metric">
+          <h4>Data Freshness</h4>
+          <p>
+            Current: <span id="data-freshness-current">85%</span> | 
+            Target: <span id="data-freshness-target">95%</span>
+          </p>
+          <progress id="data-freshness-bar" value="85" max="100"></progress>
+        </div>
+        
+        <!-- Validation Error Rates -->
+        <div class="metric">
+          <h4>Validation Error Rates</h4>
+          <p>
+            Current: <span id="validation-error-current">2%</span> | 
+            Target: <span id="validation-error-target">1%</span>
+          </p>
+        </div>
+        
+        <!-- Time-to-Data -->
+        <div class="metric">
+          <h4>Time-to-Data</h4>
+          <p>
+            Current: <span id="time-to-data-current">10 minutes</span> | 
+            Target: <span id="time-to-data-target">5 minutes</span>
+          </p>
+        </div>
+        
+        <!-- Schema Changes -->
+        <div class="metric">
+          <h4>Schema Changes</h4>
+          <p>
+            Current: <span id="schema-changes-current">5</span> | 
+            Target: <span id="schema-changes-target">3</span>
+          </p>
+        </div>
+        
+        <!-- Data Observability -->
+        <div class="metric">
+          <h4>Data Observability</h4>
+          <p>
+            Current: <span id="data-observability-current">90%</span> | 
+            Target: <span id="data-observability-target">95%</span>
+          </p>
+        </div>
+        
+        <!-- Production Failure Events -->
+        <div class="metric">
+          <h4>Production Failure Events</h4>
+          <p>
+            Current: <span id="production-failure-current">3</span> | 
+            Target: <span id="production-failure-target">1</span>
+          </p>
+        </div>
+        
+        <!-- Data Lineage -->
+        <div class="metric">
+          <h4>Data Lineage</h4>
+          <p>
+            Current: <span id="data-lineage-current">95%</span> | 
+            Target: <span id="data-lineage-target">99%</span>
+          </p>
         </div>
       </div>
-      <!-- Technical KPIs Chart -->
-      <div class="row mb-4">
-        <div class="col">
-          <h3 class="text-center">Technical KPIs (Combined)</h3>
-          <canvas id="technicalKPIsChart"></canvas>
+
+  
+      <!-- Business KPIs Section -->
+      <div class="metrics-section">
+        <h3>Business KPIs</h3>
+        
+        <!-- Value Generation -->
+        <div class="metric">
+          <h4>Value Generation</h4>
+          <p>
+            Current: <span id="value-generation-current">20%</span> | 
+            Target: <span id="value-generation-target">30%</span>
+          </p>
+        </div>
+        
+        <!-- User Adoption -->
+        <div class="metric">
+          <h4>User Adoption</h4>
+          <p>
+            Current: <span id="user-adoption-current">50%</span> | 
+            Target: <span id="user-adoption-target">70%</span>
+          </p>
+        </div>
+        
+        <!-- Compliance -->
+        <div class="metric">
+          <h4>Compliance</h4>
+          <p>
+            Current: <span id="compliance-current">98%</span> | 
+            Target: <span id="compliance-target">100%</span>
+          </p>
+        </div>
+        
+        <!-- Time-to-Insight -->
+        <div class="metric">
+          <h4>Time-to-Insight</h4>
+          <p>
+            Current: <span id="time-to-insight-current">15 minutes</span> | 
+            Target: <span id="time-to-insight-target">10 minutes</span>
+          </p>
+        </div>
+        
+        <!-- Data Product Quality -->
+        <div class="metric">
+          <h4>Data Product Quality</h4>
+          <p>
+            Current: <span id="data-product-quality-current">4.5/5</span> | 
+            Target: <span id="data-product-quality-target">4.8/5</span>
+          </p>
+        </div>
+        
+        <!-- Operational Efficiency Gains -->
+        <div class="metric">
+          <h4>Operational Efficiency Gains</h4>
+          <p>
+            Current: <span id="operational-efficiency-current">25%</span> | 
+            Target: <span id="operational-efficiency-target">30%</span>
+          </p>
+        </div>
+        
+        <!-- Data Governance Maturity -->
+        <div class="metric">
+          <h4>Data Governance Maturity</h4>
+          <p>
+            Current: <span id="data-governance-maturity-current">Level 4</span> | 
+            Target: <span id="data-governance-maturity-target">Level 5</span>
+          </p>
         </div>
       </div>
     </div>
-  </section>
 
+    <!-- Explore Key Insights -->
+    <div class="text-center mt-4">
+      <p>
+        To learn more about the approaches and methodologies used to measure and track success metrics, click the button below to expand the key insights section.
+      </p>
+      <button class="explore-btn" data-bs-toggle="collapse" data-bs-target="#successMetricsInsights" aria-expanded="false" aria-controls="successMetricsInsights">
+        Explore Key Insights
+      </button>
+    </div>
+
+    <!-- Collapsible Key Insights Section -->
+    <div id="successMetricsInsights" class="collapse mt-4">
+      <h4>Key Insights</h4>
+      <ul>
+        <li><strong>Data Freshness:</strong> Measured using pipeline monitoring tools like Apache Airflow and AWS CloudWatch to ensure data is updated within acceptable timeframes.</li>
+        <li><strong>Validation Error Rates:</strong> Tracked through automated data validation processes and error reporting tools to maintain data accuracy and reliability.</li>
+        <li><strong>Time-to-Data:</strong> Calculated from API usage logs and query execution times to ensure timely access to data for stakeholders.</li>
+        <li><strong>Value Generation:</strong> Assessed by measuring ROI improvements and cost savings derived from data initiatives.</li>
+        <li><strong>User Adoption:</strong> Monitored using engagement metrics, survey responses, and usage statistics from various data products and APIs.</li>
+        <li><strong>Compliance:</strong> Evaluated by conducting regular audits and using automated compliance checks against regulatory frameworks.</li>
+        <li><strong>Data Governance Maturity:</strong> Measured through adherence to governance best practices, such as policies defined by DAMA-DMBOK, and periodic reviews of data hygiene practices.</li>
+      </ul>
+      <p>
+        The success metrics framework ensures a comprehensive approach to track technical and business performance. By focusing on these metrics, we can drive alignment across divisions, measure progress, and achieve long-term organizational goals.
+      </p>
+    </div>
+  </section>
+  
+  <!-- Change Management -->
   <section id="change-management" class="py-5 bg-light">
     <div class="container">
       <h2 class="text-center mb-4">Change Management</h2>
@@ -245,117 +600,144 @@
         </div>
       </div>
   
-      <!-- Interactive Timeline -->
-      <div class="mb-4">
-        <h3><i class="fas fa-stream"></i> Change Management Timeline</h3>
-        <canvas id="changeTimelineChart" width="800" height="400"></canvas>
+      <!-- Strategies and Insights -->
+      <div class="text-center mt-4">
+        <p>
+          To learn more about our change management strategies and methodologies, click the button below to expand the key insights section.
+        </p>
+        <button class="explore-btn" data-bs-toggle="collapse" data-bs-target="#changeManagementInsights" aria-expanded="false" aria-controls="changeManagementInsights">
+          Explore Key Insights
+        </button>
       </div>
   
-      <!-- Strategies -->
-      <h3><i class="fas fa-lightbulb"></i> Key Strategies</h3>
-      <div class="accordion" id="changeStrategies">
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="headingOne">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-              Communication
-            </button>
-          </h2>
-          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne">
-            <div class="accordion-body">
-              Clear, consistent communication through newsletters, town halls, and one-on-one meetings.
+      <!-- Collapsible Key Insights Section -->
+      <div id="changeManagementInsights" class="collapse mt-4">
+        <h4>Key Strategies</h4>
+        <div class="accordion" id="changeStrategies">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Communication
+              </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne">
+              <div class="accordion-body">
+                Clear, consistent communication through newsletters, town halls, and one-on-one meetings.
+              </div>
             </div>
           </div>
-        </div>
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="headingTwo">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-              Training
-            </button>
-          </h2>
-          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo">
-            <div class="accordion-body">
-              Tailored training for technical and non-technical users to facilitate platform adoption.
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Training
+              </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo">
+              <div class="accordion-body">
+                Tailored training for technical and non-technical users to facilitate platform adoption.
+              </div>
             </div>
           </div>
-        </div>
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="headingThree">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-              Feedback Mechanisms
-            </button>
-          </h2>
-          <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree">
-            <div class="accordion-body">
-              Use surveys and focus groups to identify challenges and refine strategies.
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                Feedback Mechanisms
+              </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree">
+              <div class="accordion-body">
+                Use surveys and focus groups to identify challenges and refine strategies.
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
+   
 
-  <section id="past-experience" class="py-5">
+  <!-- Past Experience -->
+  <div id="past-experience" class="py-5">
     <div class="container">
       <h2 class="text-center mb-4">Alignment with Past Experience</h2>
       <p class="text-center">
-        My experience in data platforms, engineering, and leadership aligns seamlessly with the requirements of this role.
+        My extensive experience across data platforms, leadership, and engineering roles has prepared me to lead and deliver on projects of this scale.
       </p>
   
-      <!-- Timeline -->
-      <div class="timeline">
-        <div class="timeline-item">
-          <h5>Data Architect at Wavemaker (2019-2021)</h5>
-          <p>
-            - Delivered a data visualization portal for C-suite executives.<br>
-            - Developed data pipelines and implemented machine learning algorithms.
+      <!-- Timeline Cards -->
+      <div class="timeline-vertical-cards">
+        <div class="timeline-card">
+          <h5>Research Assistant at Toronto Metropolitan University</h5>
+          <p><strong>2021-Present</strong><br>
+          - Mentored a team of 10 data scientists, improving project completion by 20%.<br>
+          - Reduced processing time by 40% with innovative data collection architectures.<br>
+          - Collaborated with Copenhagen University to enhance data integration efficiency.
           </p>
         </div>
-        <div class="timeline-item">
-          <h5>Senior Data Scientist at TouchMark (2014-2019)</h5>
-          <p>
-            - Architected deep learning models for demand prediction using AWS and Azure.<br>
-            - Applied statistical and Bayesian methods in healthcare.
+        <div class="timeline-card">
+          <h5>Open Data & IT Director at Youthful Cities</h5>
+          <p><strong>2023-2024</strong><br>
+          - Led cloud migration to AWS, reducing infrastructure costs by 30%.<br>
+          - Deployed a data pipeline integrating OpenAI for enhanced decision-making.<br>
+          - Improved team performance by 50% while reducing downtime by 25%.
           </p>
         </div>
-        <div class="timeline-item">
-          <h5>Technical Director at Deighton Associates (2021-2022)</h5>
-          <p>
-            - Achieved a 30% increase in data-driven decision-making efficiency.<br>
-            - Reduced time-to-market for new products by 20%.
+        <div class="timeline-card">
+          <h5>Technical Director at Deighton Associates</h5>
+          <p><strong>2021-2022</strong><br>
+          - Achieved a 30% increase in data-driven decision-making efficiency.<br>
+          - Reduced time-to-market for new products by 20%.<br>
+          - Implemented process improvements boosting departmental productivity by 50%.
           </p>
         </div>
-        <div class="timeline-item">
-          <h5>Open Data & IT Director at Youthful Cities (2023-2024)</h5>
-          <p>
-            - Led cloud migration to AWS, reducing infrastructure costs by 30%.<br>
-            - Deployed a data pipeline integrating OpenAI for enhanced decision-making.
+        <div class="timeline-card">
+          <h5>Data Architect at Wavemaker</h5>
+          <p><strong>2019-2021</strong><br>
+          - Delivered a data visualization portal for C-suite executives.<br>
+          - Built scalable data pipelines and implemented machine learning algorithms.<br>
+          - Managed cross-functional teams to deliver high-impact global projects.
           </p>
         </div>
-        <!-- Research Assistant -->
-        <div class="timeline-item">
-          <h5>Research Assistant at Toronto Metropolitan University (2021-Present)</h5>
-          <p>
-            Mentored a team of 10 data scientists to improve project completion rate by 20%. Implemented data collection 
-            architectures reducing processing time by 40%. Collaborated with Copenhagen University, enhancing data integration 
-            efficiency by 30%.
+        <div class="timeline-card">
+          <h5>Senior Data Scientist at TouchMark</h5>
+          <p><strong>2014-2019</strong><br>
+          - Architected deep learning models for demand prediction using AWS and Azure.<br>
+          - Applied statistical and Bayesian methods in healthcare policy assessment.<br>
+          - Led fraud detection and AML validation for credit card transactions.
+          </p>
+        </div>
+        <div class="timeline-card">
+          <h5>Senior Operations Professional at IBM India</h5>
+          <p><strong>2012-2014</strong><br>
+          - Led a team of 15 managing six client accounts, improving SLA performance.<br>
+          - Developed SQL queries for dynamic reporting, enhancing operational efficiency.<br>
+          - Established robust Operational Level Management processes.
+          </p>
+        </div>
+        <div class="timeline-card">
+          <h5>Oracle DBA Experience</h5>
+          <p><strong>2008-2012</strong><br>
+          - Performed query tuning and created automation scripts for Oracle 9i.<br>
+          - Managed user permissions and provided SME support for clients.<br>
+          - Improved database performance and operational workflows.
           </p>
         </div>
       </div>
     </div>
-  </section>
-
+  </div>
 
   <!-- About Me Section -->
-  <section id="about-me" class="hero text-center py-5 bg-light">
+  <section id="about-me" class="hero text-center py-5">
     <div class="container">
       <img src="assets/Kumara_pic.jpeg" alt="Your Photo" class="rounded-circle mb-3" style="width: 150px; height: 150px; border: 3px solid #007bff;">
       <h1 class="display-4">Kumara Prasanna Jayaraju</h1>
-      <p class="lead"> Cloud Data Architect | Reseach Assistant | AI Enthusiast </p>
+      <p class="lead"> Enterprise Data Architect | Research Assistant | AI Enthusiast </p>
       <a href="https://www.linkedin.com/in/kumara-prasanna-j-014423101/" target="_blank" class="btn btn-primary btn-lg">
         <i class="fab fa-linkedin"></i> Connect on LinkedIn
       </a>
     </div>
   </section>
+  
 
   <!-- Certifications Section -->
   <section id="certifications" class="py-5 bg-light">
@@ -382,6 +764,7 @@
     </div>
   </section>
   
+  
   <!-- Footer -->
   <footer class="bg-dark text-white text-center py-3">
     <div class="container">
@@ -394,5 +777,7 @@
   <!-- Bootstrap Bundle JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="script.js"></script>
+  
+
 </body>
 </html>

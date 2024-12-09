@@ -1,3 +1,71 @@
+/* Smooth Scrooling */
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Navbar with Background Image */
+.navbar {
+  background: url('assets/toronto_Main.jpeg') no-repeat center center; /* Replace with your image path */
+  background-size: cover; /* Ensure the image covers the navbar area */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Add subtle shadow below the navbar */
+}
+
+.navbar .navbar-brand, 
+.navbar .nav-link {
+  color: #ffffff !important; /* Ensure text is readable on the image */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8); /* Add a shadow to the text for better contrast */
+  transition: color 0.3s ease; /* Smooth transition for hover */
+}
+
+.navbar .navbar-nav .nav-link:hover {
+  color: #007bff !important; /* Blue hover effect for nav links */
+  text-decoration: underline; /* Underline on hover for better UX */
+}
+
+.navbar .navbar-brand {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #007bff;
+}
+
+.navbar .navbar-brand:hover {
+  color: #0056b3;
+}
+
+.navbar .nav-link.active {
+  color: #007bff;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+/* Optional: Add an Overlay for Better Text Contrast */
+.navbar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* Black overlay with 40% opacity */
+  z-index: 1; /* Place below the navbar content */
+}
+
+.navbar .container {
+  position: relative;
+  z-index: 2; /* Ensure navbar content is above the overlay */
+}
+
+
+/* hero */
+
+
+
+
+
+
+
+
 /* Timeline Styles */
 .timeline {
   border-left: 3px solid #007bff;
@@ -21,80 +89,82 @@
 
 /* Alignment with Past Experience */
 .timeline {
-position: relative;
-margin: 2rem 0;
-padding: 1rem 0;
-border-left: 3px solid #007bff;
+  position: relative;
+  margin: 2rem 0;
+  padding: 1rem 0;
+  border-left: 3px solid #007bff;
 }
 .timeline-item {
-position: relative;
-margin-left: 20px;
-padding: 1rem 0;
+  position: relative;
+  margin-left: 20px;
+  padding: 1rem 0;
 }
 .timeline-item:before {
-content: "";
-position: absolute;
-top: 0;
-left: -10px;
-width: 20px;
-height: 20px;
-background-color: #007bff;
-border-radius: 50%;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -10px;
+  width: 20px;
+  height: 20px;
+  background-color: #007bff;
+  border-radius: 50%;
 }
 .timeline-item h5 {
-font-weight: bold;
-color: #333;
+  font-weight: bold;
+  color: #333;
 }
 .timeline-item p {
-margin: 0.5rem 0 0;
-font-size: 0.9rem;
-color: #555;
+  margin: 0.5rem 0 0;
+  font-size: 0.9rem;
+  color: #555;
 }
 
 /* General styles for the project */
 body {
-font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 .hero {
-background: linear-gradient(135deg, #007bff, #6610f2);
-color: white;
+  background: linear-gradient(135deg, #007bff, #6610f2);
+  color: white;
 }
 .tooltip-custom {
-position: absolute;
-background-color: #333;
-color: #fff;
-padding: 5px;
-border-radius: 5px;
-display: none;
+  position: absolute;
+  background-color: #333;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  display: none;
 }
 footer a {
-text-decoration: none;
+  text-decoration: none;
 }
 
 /* Resource Allocation Chart */
 .resource-allocation-container {
-display: flex;
-flex-wrap: wrap;
-justify-content: space-between;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 .resource-allocation-chart {
-flex: 1 1 45%;
-margin: 20px;
+  flex: 1 1 45%; /* Ensures parallel layout for bar and pie charts */
+  max-width: 45%;
+  margin: 20px;
 }
 
-/* Success Metrics Chart */
-.success-metrics-container {
-display: flex;
-flex-wrap: wrap;
-justify-content: space-around;
-}
-.success-metrics-chart {
-flex: 1 1 45%;
-margin: 20px;
-}
 
 
 /* Hero Page */
+
+
+.hero {
+  background: url('assets/toronto_Main.png') no-repeat center center; /* Replace with your uploaded image path */
+  background-size: cover; /* Ensure the image covers the entire section */
+  color: #ffffff; /* Ensure text remains readable */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Add a text shadow for better contrast */
+  padding: 40px 0; /* Adjust padding to match your design */
+}
+
+
 #about-me img {
   width: 150px;
   height: 150px;
@@ -110,4 +180,394 @@ margin: 20px;
 #certifications img {
   max-height: 100px;
   margin-bottom: 10px;
+}
+
+/* General Styling */
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  line-height: 1.6;
+}
+
+
+
+h2, h3 {
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+/* Architecture Section Styling */
+#architecture {
+  margin-bottom: 50px;
+}
+
+#architecture img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+
+#architecture h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+#architecture ul {
+  padding-left: 20px;
+}
+
+#architecture ul li {
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+/* Roadmap */
+#roadmapChartContainer {
+  height: 600px; /* Adjust as needed */
+  margin-bottom: 20px;
+}
+
+.accordion-item {
+  margin-bottom: 10px;
+}
+
+.accordion-button {
+  background-color: #007bff;
+  color: white;
+}
+
+.accordion-button.collapsed {
+  background-color: #f8f9fa;
+  color: #000;
+}
+
+.accordion-body {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* Resource Planning */
+
+/* Resource Planning Section */
+/* Resource Planning Section */
+#resource-planning {
+  background-color: #f8f9fa;
+  padding: 3rem 0;
+}
+
+#resource-planning .table {
+  margin-bottom: 2rem;
+}
+
+#resource-planning .table th,
+#resource-planning .table td {
+  text-align: center;
+}
+
+.chart-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* Align items at the top */
+  gap: 20px;
+}
+
+.resource-allocation-chart {
+  flex: 1 1 45%; /* Ensure both charts take equal width */
+  max-width: 45%; /* Restrict to 45% of container */
+  height: 420px; /* Consistent height for both charts */
+}
+
+#resourceAllocationPieChart {
+  width: 460px; /* Match the dimensions of bar chart */
+  height: 460px;
+}
+
+
+/* Success Metrics Chart */
+
+/* Success Metrics Section */
+#success-metrics {
+  padding: 20px;
+  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
+}
+
+#metrics-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+#metrics-header h3 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+#metrics-header button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#metrics-header button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+/* Metrics Container */
+.metrics-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.metrics-section {
+  flex: 1 1 calc(48% - 10px);
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.metric {
+  margin-bottom: 20px;
+}
+
+.metric span {
+  font-weight: bold;
+}
+
+
+#toggle-context {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 10px;
+}
+
+#toggle-context:hover {
+  background-color: #0056b3;
+}
+
+#context-content {
+  display: none;
+  font-size: 14px;
+  color: #555;
+}
+
+.hidden {
+  display: none;
+}
+
+
+
+/* Change Management Section */
+#change-management {
+  padding: 40px;
+  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
+}
+
+/* Section Title */
+#change-management h2 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Key Objectives */
+#change-management .row .col-md-4 {
+  margin-bottom: 20px;
+}
+
+#change-management .row .col-md-4 i {
+  margin-bottom: 10px;
+}
+
+#change-management .row .col-md-4 h5 {
+  font-size: 18px;
+  font-weight: bold;
+  color: #007bff;
+}
+
+#change-management .row .col-md-4 p {
+  font-size: 14px;
+  color: #555;
+}
+
+/* Button for Collapsible Section */
+.explore-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.explore-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Collapsible Key Insights */
+#changeManagementInsights {
+  margin-top: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#changeManagementInsights h4 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+#changeManagementInsights .accordion-item {
+  border: none;
+}
+
+#changeManagementInsights .accordion-header .accordion-button {
+  background-color: #f9f9f9;
+  color: #333;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 10px 15px;
+}
+
+#changeManagementInsights .accordion-header .accordion-button:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+#changeManagementInsights .accordion-body {
+  font-size: 14px;
+  color: #555;
+}
+
+/* Past Experience Section */
+
+
+/* Past Experience Section */
+#past-experience {
+  padding: 40px;
+  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
+}
+
+#past-experience h2 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
+#past-experience p {
+  text-align: center;
+  font-size: 16px;
+  color: #666;
+}
+
+/* Timeline Cards Styling */
+.timeline-vertical-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.timeline-card {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.timeline-card h5 {
+  font-size: 18px;
+  color: #007bff;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.timeline-card p {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.timeline-card:hover {
+  background-color: #f0f8ff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+/* Add a decorative left border */
+.timeline-card:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background-color: #007bff;
+  border-radius: 4px 0 0 4px;
+}
+
+
+
+/* About Me Session */
+
+#about-me {
+  background: url('assets/toronto_Main.png') no-repeat center center; /* Replace with your image path */
+  background-size: cover; /* Ensures the image covers the entire section */
+  color: #ffffff; /* White text for contrast */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7); /* Add text shadow for better readability */
+  padding: 60px 0; /* Adjust padding to match your design */
+  position: relative;
+}
+
+#about-me img {
+  border: 3px solid #ffffff; /* White border for the profile image */
+}
+
+#about-me h1 {
+  font-size: 2.5rem;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+#about-me p {
+  font-size: 1.2rem;
+  margin-top: 10px;
+}
+
+#about-me a {
+  margin-top: 20px;
 }

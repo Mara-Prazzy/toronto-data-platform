@@ -1,385 +1,339 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Tooltip for Architecture Diagram
-  const tooltip = document.getElementById('tooltip');
-  const areas = document.querySelectorAll('img[usemap] area');
-
-  areas.forEach(area => {
-    area.addEventListener('mouseenter', (e) => {
-      tooltip.textContent = e.target.dataset.info || "Component Info";
-      tooltip.style.left = `${e.pageX + 10}px`;
-      tooltip.style.top = `${e.pageY + 10}px`;
-      tooltip.style.display = 'block';
-    });
-
-    area.addEventListener('mouseleave', () => {
-      tooltip.style.display = 'none';
-    });
+  // Roadmap Gantt Chart
+  Highcharts.ganttChart('roadmapChartContainer', {
+    accessibility: { enabled: false },
+    title: { text: 'Enterprise Data Platform Roadmap - City of Toronto' },
+    yAxis: {
+      categories: [
+        'Awareness & Stakeholder Engagement',
+        'Design',
+        'Development',
+        'Pilot Implementation',
+        'Scaling',
+        'Adoption & Enablement',
+        'Monitoring & Optimization',
+        'Future Enhancements',
+      ],
+      reversed: true,
+    },
+    xAxis: {
+      type: 'datetime',
+      title: { text: 'Timeline' },
+    },
+    series: [{
+      name: 'Phases',
+      data: [
+        {
+          start: Date.UTC(2025, 0, 1),
+          end: Date.UTC(2025, 2, 31),
+          y: 0,
+          color: {
+            linearGradient: { x1: 0, y1: 0, x2: 1, y2: 0 },
+            stops: [
+              [0, '#007bff'], // Blue gradient
+              [1, '#4dabf7'], 
+            ],
+          },
+        },
+        {
+          start: Date.UTC(2025, 2, 1),
+          end: Date.UTC(2025, 5, 30),
+          y: 1,
+          color: {
+            linearGradient: { x1: 0, y1: 0, x2: 1, y2: 0 },
+            stops: [
+              [0, '#6610f2'], // Purple gradient
+              [1, '#a370f2'], 
+            ],
+          },
+        },
+        {
+          start: Date.UTC(2025, 4, 1),
+          end: Date.UTC(2025, 8, 30),
+          y: 2,
+          color: {
+            linearGradient: { x1: 0, y1: 0, x2: 1, y2: 0 },
+            stops: [
+              [0, '#6f42c1'],
+              [1, '#b071d3'], 
+            ],
+          },
+        },
+        {
+          start: Date.UTC(2025, 7, 1),
+          end: Date.UTC(2025, 11, 31),
+          y: 3,
+          color: {
+            linearGradient: { x1: 0, y1: 0, x2: 1, y2: 0 },
+            stops: [
+              [0, '#28a745'], // Green gradient
+              [1, '#81c784'],
+            ],
+          },
+        },
+        {
+          start: Date.UTC(2025, 9, 1),
+          end: Date.UTC(2026, 0, 31),
+          y: 4,
+          color: {
+            linearGradient: { x1: 0, y1: 0, x2: 1, y2: 0 },
+            stops: [
+              [0, '#ffc107'], // Yellow gradient
+              [1, '#ffd54f'], 
+            ],
+          },
+        },
+        {
+          start: Date.UTC(2026, 0, 1),
+          end: Date.UTC(2026, 5, 30),
+          y: 5,
+          color: {
+            linearGradient: { x1: 0, y1: 0, x2: 1, y2: 0 },
+            stops: [
+              [0, '#dc3545'], 
+              [1, '#f28b96'], 
+            ],
+          },
+        },
+        {
+          start: Date.UTC(2026, 0, 1),
+          end: Date.UTC(2026, 5, 30),
+          y: 6,
+          color: {
+            linearGradient: { x1: 0, y1: 0, x2: 1, y2: 0 },
+            stops: [
+              [0, '#20c997'],
+              [1, '#81d4c7'], 
+            ],
+          },
+        },
+        {
+          start: Date.UTC(2026, 0, 1),
+          end: Date.UTC(2026, 5, 30),
+          y: 7,
+          color: {
+            linearGradient: { x1: 0, y1: 0, x2: 1, y2: 0 },
+            stops: [
+              [0, '#6c757d'],
+              [1, '#adb5bd'], 
+            ],
+          },
+        },
+      ],
+    }],
   });
 
-  // Roadmap Timeline Chart
-  const ctxRoadmap = document.getElementById('roadmapChart').getContext('2d');
-
-  // Fetch roadmap data from JSON
-  fetch('roadmap.json')
-    .then(response => response.json())
-    .then(roadmap => {
-      const labels = roadmap.map(item => item.phase);
-      const startData = roadmap.map(item => item.start);
-      const durationData = roadmap.map(item => item.end - item.start); // Duration of each phase
-      const tooltips = roadmap.map(item => item.details);
-
-      // Create gradient colors
-      const gradientColors = [];
-      roadmap.forEach((_, index) => {
-        const gradient = ctxRoadmap.createLinearGradient(0, 0, 400, 0);
-        if (index === 0) {
-          gradient.addColorStop(0, "#007bff");
-          gradient.addColorStop(1, "#4dabf7");
-        } else if (index === 1) {
-          gradient.addColorStop(0, "#6610f2");
-          gradient.addColorStop(1, "#a370f2");
-        } else if (index === 2) {
-          gradient.addColorStop(0, "#6f42c1");
-          gradient.addColorStop(1, "#b071d3");
-        } else {
-          gradient.addColorStop(0, "#e83e8c");
-          gradient.addColorStop(1, "#f77eb9");
-        }
-        gradientColors.push(gradient);
-      });
-
-      new Chart(ctxRoadmap, {
-        type: 'bar',
-        data: {
-          labels: labels,
-          datasets: [{
-            label: "Start Time",
-            data: startData, // Starting offsets
-            backgroundColor: "rgba(0, 0, 0, 0)", // Invisible for stacking
-            borderWidth: 0
-          }, {
-            label: "Duration",
-            data: durationData, // Duration of each phase
-            backgroundColor: gradientColors, // Gradient colors for each phase
-          }]
-        },
-        options: {
-          indexAxis: 'y', // Horizontal bar chart
-          responsive: true,
-          scales: {
-            x: {
-              title: {
-                display: true,
-                text: "Months"
-              },
-              ticks: {
-                stepSize: 1, // Show months incrementally
-                max: 12 // Maximum month
-              },
-              stacked: true // Stack phases
-            },
-            y: {
-              title: {
-                display: true,
-                text: "Phases"
-              },
-              stacked: true // Stack phases
-            }
+  // Resource Allocation Charts
+  // Stacked Horizontal Bar Chart
+  const ctxBar = document.getElementById('resourceAllocationBarChart').getContext('2d');
+  new Chart(ctxBar, {
+    type: 'bar',
+    data: {
+      labels: ['Awareness', 'Design', 'Development', 'Pilot', 'Scaling', 'Adoption'],
+      datasets: [
+        { label: 'Data Engineers', data: [2, 2, 5, 5, 5, 5], backgroundColor: '#007bff' },
+        { label: 'Cloud Engineers', data: [0, 1, 3, 0, 2, 0], backgroundColor: '#6610f2' },
+        { label: 'DevOps Professionals', data: [0, 1, 2, 1, 0, 0], backgroundColor: '#28a745' },
+        { label: 'Data Governance Specialist', data: [1, 1, 0, 0, 0, 1], backgroundColor: '#20c997' },
+        { label: 'Machine Learning Engineers', data: [0, 1, 1, 1, 1, 0], backgroundColor: '#ffc107' },
+        { label: 'Data Analysts', data: [1, 2, 0, 0, 0, 2], backgroundColor: '#17a2b8' },
+      ],
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: (tooltipItem) => `${tooltipItem.dataset.label}: ${tooltipItem.raw}`,
           },
-          plugins: {
-            legend: {
-              display: false
-            },
-            tooltip: {
-              callbacks: {
-                label: function(tooltipItem) {
-                  return `${labels[tooltipItem.dataIndex]}: ${tooltips[tooltipItem.dataIndex]}`;
-                }
-              }
-            }
-          }
-        }
-      });
-    });
+        },
+        legend: { display: true, position: 'top' },
+      },
+      indexAxis: 'y', // Horizontal bar chart
+      scales: {
+        x: { stacked: true, title: { display: true, text: 'Count' } },
+        y: { stacked: true, title: { display: true, text: 'Phases' } },
+      },
+    },
+  });
 
-  // Resource Allocation Data
-  const resourceAllocationData = [
-    { phase: "Planning", start: 0, end: 3, color: "#007bff" },
-    { phase: "Pilot Implementation", start: 2, end: 4, color: "#17a2b8" },
-    { phase: "Scaling", start: 4, end: 8, color: "#ffc107" },
-    { phase: "Optimization", start: 6, end: 12, color: "#28a745" },
+  // Resource Allocation Pie Chart
+  const resourceData = [
+    { role: 'Data Engineers', count: 5, estimatedCost: 600000, color: '#007bff' },
+    { role: 'Cloud Engineers', count: 2, estimatedCost: 250000, color: '#6610f2' },
+    { role: 'DevOps Professionals', count: 2, estimatedCost: 240000, color: '#28a745' },
+    { role: 'Data Governance Specialist', count: 1, estimatedCost: 120000, color: '#20c997' },
+    { role: 'Machine Learning Engineers', count: 1, estimatedCost: 150000, color: '#ffc107' },
+    { role: 'Data Analysts', count: 2, estimatedCost: 180000, color: '#17a2b8' },
   ];
 
-  // Bar Chart: Horizontal Format
-  const ctxBar = document.getElementById("resourceAllocationBarChart").getContext("2d");
-  const barChartLabels = resourceAllocationData.map((item) => `${item.phase} (${item.start}-${item.end} Months)`);
-  const barChartDurations = resourceAllocationData.map((item) => item.end - item.start);
-  const barChartColors = resourceAllocationData.map((item) => item.color);
+  const ctxPie = document.getElementById('resourceAllocationPieChart').getContext('2d');
 
-  new Chart(ctxBar, {
-    type: "bar", // Use 'bar' type
+  // Calculate total cost for percentage calculations
+  const totalCost = resourceData.reduce((sum, item) => sum + item.estimatedCost, 0);
+
+  const pieChart = new Chart(ctxPie, {
+    type: 'pie',
     data: {
-      labels: barChartLabels,
+      labels: resourceData.map((item) => item.role),
       datasets: [
         {
-          label: "Duration (Months)",
-          data: barChartDurations,
-          backgroundColor: barChartColors,
+          data: resourceData.map((item) => item.estimatedCost),
+          backgroundColor: resourceData.map((item) => item.color),
+          hoverOffset: 4,
         },
       ],
     },
     options: {
-      responsive: true,
-      indexAxis: "y", // Horizontal bars
-      scales: {
-        x: {
-          title: { display: true, text: "Months" },
-          ticks: { stepSize: 1, max: 12 }, // Show months from 0 to 12
-        },
-        y: {
-          title: { display: true, text: "Phases" },
-        },
-      },
-      plugins: {
-        legend: { display: false },
-        tooltip: {
-          callbacks: {
-            label: (tooltipItem) => {
-              const { label, dataIndex } = tooltipItem;
-              const { start, end } = resourceAllocationData[dataIndex];
-              return `${label}: ${start} to ${end} months`;
-            },
-          },
-        },
-      },
-    },
-  });
-
-  // Doughnut Chart: Percentage
-  const ctxDoughnut = document.getElementById("resourceAllocationDoughnutChart").getContext("2d");
-  const totalDuration = resourceAllocationData.reduce((sum, item) => sum + (item.end - item.start), 0);
-  const doughnutChartPercentages = resourceAllocationData.map(
-    (item) => ((item.end - item.start) / totalDuration) * 100
-  );
-
-  new Chart(ctxDoughnut, {
-    type: "doughnut",
-    data: {
-      labels: resourceAllocationData.map((item) => item.phase),
-      datasets: [
-        {
-          data: doughnutChartPercentages,
-          backgroundColor: barChartColors,
-        },
-      ],
-    },
-    options: {
-      responsive: true,
+      responsive: false, // Disable responsiveness for fixed dimensions
+      maintainAspectRatio: false, // Allow custom height and width
       plugins: {
         tooltip: {
           callbacks: {
             label: (tooltipItem) => {
-              const phase = tooltipItem.label;
-              const percentage = doughnutChartPercentages[tooltipItem.dataIndex].toFixed(1);
-              return `${phase}: ${percentage}%`;
-            },
-          },
-        },
-      },
-    },
-  });
-
-  // Business KPIs (Combined Chart with Dual Y-Axes)
-  const ctxBusiness = document.getElementById('businessKPIsChart').getContext('2d');
-  new Chart(ctxBusiness, {
-    type: 'bar',
-    data: {
-      labels: ['Customer Satisfaction (%)', 'Market Penetration (%)', 'Revenue Growth ($)'],
-      datasets: [
-        {
-          label: 'Percentage',
-          data: [85, 70, 0], // Zero value for revenue bar on this dataset
-          backgroundColor: ['#4CAF50', '#2196F3', 'rgba(0,0,0,0)'], // Last bar invisible
-          yAxisID: 'y2',
-        },
-        {
-          label: 'Dollar Value',
-          data: [0, 0, 2000000], // Zero values for percentage bars on this dataset
-          backgroundColor: ['rgba(0,0,0,0)', 'rgba(0,0,0,0)', '#FF9800'], // First two bars invisible
-          yAxisID: 'y1',
-        },
-      ],
-    },
-    options: {
-      responsive: true,
-      scales: {
-        y1: {
-          type: 'linear',
-          position: 'right',
-          title: {
-            display: true,
-            text: 'Dollar Value ($)',
-          },
-          ticks: {
-            beginAtZero: true,
-          },
-        },
-        y2: {
-          type: 'linear',
-          position: 'left',
-          title: {
-            display: true,
-            text: 'Percentage (%)',
-          },
-          ticks: {
-            beginAtZero: true,
-            max: 100,
-          },
-          grid: {
-            drawOnChartArea: false, // Avoid overlapping grid lines
-          },
-        },
-      },
-      plugins: {
-        tooltip: {
-          callbacks: {
-            label: function (tooltipItem) {
-              if (tooltipItem.datasetIndex === 0) {
-                return `${tooltipItem.label}: ${tooltipItem.raw}%`;
-              }
-              return `${tooltipItem.label}: $${tooltipItem.raw}`;
+              const role = tooltipItem.label;
+              const cost = tooltipItem.raw;
+              const percentage = ((cost / totalCost) * 100).toFixed(1);
+              return `${role}: $${cost.toLocaleString()} (${percentage}%)`;
             },
           },
         },
         legend: {
-          display: false,
-          position: 'top',
-        },
-      },
-    },
-  });
-
-  // Technical KPIs (Combined Chart with Dual Y-Axes)
-  const ctxTechnical = document.getElementById('technicalKPIsChart').getContext('2d');
-  new Chart(ctxTechnical, {
-    type: 'bar',
-    data: {
-      labels: ['Uptime (%)', 'Data Quality (%)', 'Processing Speed (ms)'],
-      datasets: [
-        {
-          label: 'Percentage Metrics',
-          data: [99.9, 95.5, 0], // Zero value for processing speed on this dataset
-          backgroundColor: ['#4CAF50', '#2196F3', 'rgba(0,0,0,0)'], // Last bar invisible
-          yAxisID: 'y2',
-        },
-        {
-          label: 'Processing Speed',
-          data: [0, 0, 300], // Zero values for percentage bars on this dataset
-          backgroundColor: ['rgba(0,0,0,0)', 'rgba(0,0,0,0)', '#FF9800'], // First two bars invisible
-          yAxisID: 'y1',
-        },
-      ],
-    },
-    options: {
-      responsive: true,
-      scales: {
-        y1: {
-          type: 'linear',
-          position: 'right',
-          title: {
-            display: true,
-            text: 'Processing Speed (ms)',
-          },
-          ticks: {
-            beginAtZero: true,
-          },
-        },
-        y2: {
-          type: 'linear',
-          position: 'left',
-          title: {
-            display: true,
-            text: 'Percentage (%)',
-          },
-          ticks: {
-            beginAtZero: true,
-            max: 100,
-          },
-          grid: {
-            drawOnChartArea: false, // Avoid overlapping grid lines
-          },
-        },
-      },
-      plugins: {
-        tooltip: {
-          callbacks: {
-            label: function (tooltipItem) {
-              if (tooltipItem.datasetIndex === 0) {
-                return `${tooltipItem.label}: ${tooltipItem.raw}%`;
-              }
-              return `${tooltipItem.label}: ${tooltipItem.raw} ms`;
+          display: true,
+          position: 'top', // Align legends with the bar chart
+          labels: {
+            boxWidth: 12,
+            font: {
+              size: 12,
             },
           },
         },
-        legend: {
-          display: false,
-          position: 'top',
+        datalabels: {
+          color: '#fff',
+          font: {
+            weight: 'bold',
+          },
+          formatter: (value, context) => {
+            const percentage = ((value / totalCost) * 100).toFixed(1);
+            return `${percentage}%`;
+          },
         },
       },
     },
   });
 
-  const ctxTimeline = document.getElementById('changeTimelineChart').getContext('2d');
+  // Success Metric
 
-  new Chart(ctxTimeline, {
-    type: 'bar', // Use 'bar' instead of 'horizontalBar'
-    data: {
-      labels: ['Awareness', 'Implementation', 'Adoption', 'Monitoring'],
-      datasets: [{
-        //label: 'Timeline (Months)',
-        data: [3, 6, 9, 12],
-        backgroundColor: ['#007bff', '#6610f2', '#6f42c1', '#e83e8c'],
-      }]
-    },
-    options: {
-      indexAxis: 'y', // Make the bar chart horizontal
-      responsive: true,
-      scales: {
-        x: {
-          title: { display: true, text: 'Months' },
-          ticks: { stepSize: 3 }
-        },
-        y: {
-          title: { display: true, text: 'Phases' }
-        }
-      },
-      plugins: {
-        tooltip: {
-          callbacks: {
-            label: function (tooltipItem) {
-              const descriptions = [
-                'Engaging stakeholders and creating awareness.',
-                'Executing initial platform rollout.',
-                'Driving platform adoption across divisions.',
-                'Monitoring usage and optimizing.'
-              ];
-              return descriptions[tooltipItem.dataIndex];
-            }
-          }
-        }
+  // Hover Highlight for Metrics
+  document.querySelectorAll('.metric').forEach(metric => {
+    metric.addEventListener('mouseenter', () => {
+      metric.style.backgroundColor = "#f0f8ff"; // Highlight on hover
+    });
+    metric.addEventListener('mouseleave', () => {
+      metric.style.backgroundColor = "transparent"; // Reset
+    });
+  });
+
+  // Toggle Highlight for Current/Target Metrics
+  const toggleButton = document.getElementById('toggle-metrics');
+  let highlightActive = false;
+
+  toggleButton.addEventListener('click', () => {
+    highlightActive = !highlightActive;
+
+    const toggleHighlight = (currentId, targetId) => {
+      const currentElement = document.getElementById(currentId);
+      const targetElement = document.getElementById(targetId);
+
+      if (highlightActive) {
+        currentElement.style.color = "red";
+        targetElement.style.color = "green";
+      } else {
+        currentElement.style.color = "black";
+        targetElement.style.color = "black";
       }
+    };
+
+    // Technical KPIs
+    toggleHighlight("data-freshness-current", "data-freshness-target");
+    toggleHighlight("validation-error-current", "validation-error-target");
+    toggleHighlight("time-to-data-current", "time-to-data-target");
+    toggleHighlight("schema-changes-current", "schema-changes-target");
+    toggleHighlight("data-observability-current", "data-observability-target");
+    toggleHighlight("production-failure-current", "production-failure-target");
+    toggleHighlight("data-lineage-current", "data-lineage-target");
+
+    // Business KPIs
+    toggleHighlight("value-generation-current", "value-generation-target");
+    toggleHighlight("user-adoption-current", "user-adoption-target");
+    toggleHighlight("compliance-current", "compliance-target");
+    toggleHighlight("time-to-insight-current", "time-to-insight-target");
+    toggleHighlight("data-product-quality-current", "data-product-quality-target");
+    toggleHighlight("operational-efficiency-current", "operational-efficiency-target");
+    toggleHighlight("data-governance-maturity-current", "data-governance-maturity-target");
+  });
+
+  // Change Mangement
+
+  // Toggle Collapsible Key Insights
+  const changeManagementButton = document.querySelector('.explore-btn');
+  const changeManagementCollapse = document.querySelector('#changeManagementInsights');
+
+  changeManagementButton.addEventListener('click', () => {
+    if (changeManagementCollapse.classList.contains('show')) {
+      changeManagementButton.textContent = "Explore Key Insights";
+    } else {
+      changeManagementButton.textContent = "Hide Key Insights";
     }
   });
 
-  const timelineItems = document.querySelectorAll(".timeline-item");
+  // Optionally, you can reset the text when the section collapses
+  changeManagementCollapse.addEventListener('hidden.bs.collapse', () => {
+    changeManagementButton.textContent = "Explore Key Insights";
+  });
 
-  timelineItems.forEach((item) => {
-    item.addEventListener("click", () => {
-      const details = item.querySelector("p");
-      details.style.display =
-        details.style.display === "none" || !details.style.display
-          ? "block"
-          : "none";
+  changeManagementCollapse.addEventListener('shown.bs.collapse', () => {
+    changeManagementButton.textContent = "Hide Key Insights";
+  });
+
+
+  // Past Experience
+  // Highlight timeline items on hover
+  document.querySelectorAll('.timeline-item').forEach(item => {
+    item.addEventListener('mouseenter', () => {
+      item.style.backgroundColor = "#e6f7ff"; // Highlight color
+      item.style.borderColor = "#0056b3"; // Darker blue border
+    });
+
+    item.addEventListener('mouseleave', () => {
+      item.style.backgroundColor = "transparent"; // Reset background
+      item.style.borderColor = "#007bff"; // Original blue border
     });
   });
+
+  // Nav Bar //
+
+  const sections = document.querySelectorAll("section");
+  const navLinks = document.querySelectorAll(".nav-link");
+
+  window.addEventListener("scroll", () => {
+    let current = "";
+
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop - 50;
+      if (window.scrollY >= sectionTop) {
+        current = section.getAttribute("id");
+      }
+    });
+
+    navLinks.forEach((link) => {
+      link.classList.remove("active");
+      if (link.getAttribute("href").includes(current)) {
+        link.classList.add("active");
+      }
+    });
+  });  
+
+
+
 });
